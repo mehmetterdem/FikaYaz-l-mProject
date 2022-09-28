@@ -1,0 +1,21 @@
+﻿
+@model List<EntityLayer.Concrete.Product>
+<form id="form">
+    <table class="table table-bordered" id="tablodetay">
+        <tr>
+            <th>Id</th>
+            <th>Ürün</th>
+            <th>Fiyat</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.UnitPrice</td>
+            </tr>
+        }
+    </table>
+</form>
+
+

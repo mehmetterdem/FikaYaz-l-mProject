@@ -1,0 +1,99 @@
+﻿
+
+<h1>Product Ekleme Ajax İşlemleri</h1>
+<br />
+<button type="button" id="btngetlist" class="btn btn-outline-primary">Product Listesi</button>
+<button type="button" id="btnadd" class="btn btn-outline-primary">Ürün Ekle</button>
+<button type="button" id="btnDetay" class="btn btn-outline-primary">Ürün Detay</button>
+
+<br />
+<br />
+<div id="productlist">
+
+
+</div>
+<br />
+<div id="productadd">
+
+</div>
+
+<div id="Details">
+
+</div>
+<br />
+<div>
+    <h2>Ürün Ekleme</h2>
+    <input type="text" id="productname" placeholder="Ürün adı giriniz" class="form-control" />
+    <input type="text" id="unitprice" placeholder="Ürün fiyatı giriniz" class="form-control" />
+</div>
+<br />
+<div>
+    <h2>Ürün Detay</h2>
+    <input type="text" id="id" placeholder="detay için id giriniz" class="form-control" />
+</div>
+
+
+@section scripts{
+
+    <script>
+        $("#btngetlist").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "html",
+                type: "Get",
+                url: "/Product/GetList",
+                success: function (func) {
+                        //console.log(func);
+                       /* let w = jQuery.parseJSON(func)*/;
+                    //let tablehtml = "<table class=table table-bordered> <tr> <th>Ürün Id </th> <th>Ürün Adı </th> <th>Fiyat</th> <tr/>";
+                    //$.each(w, (index, value) => {
+                    //    tablehtml += `<tr> <td>${value.Id}</td><td>${value.Name}</td><td>${value.UnitPrice}</td></tr>`
+                    //});
+                    //tablehtml += "</table>";
+                    $("#productlist").html(func);
+
+                }
+            });
+        });
+
+        $("#btnadd").click(function () {
+
+            //serializeObject()
+
+            let writer = {
+                name: $("#productname").val(),
+                unitprice: $("#unitprice").val()
+            };
+            $.ajax({
+                type: "post",
+                url: "/Product/Add",
+                data: writer ,
+                success: function (func) {
+                    $("#productadd").html(func);
+                }
+            });
+        });
+
+        $("#btnDetay").click(function () {
+            let ürünid = $("#id").val();
+            $.ajax({
+                contentType: "application/json",
+                dataType: "html",
+                type: "Get",
+                url: "/Product/Form",
+                data: { id: ürünid },
+                success: function (func) {
+
+                    $("#Details").html(func)
+                }
+            });
+        });
+
+    </script>
+
+}
+
+
+
+
+
