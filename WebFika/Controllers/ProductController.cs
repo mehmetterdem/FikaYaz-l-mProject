@@ -37,11 +37,12 @@ namespace WebFika.Controllers
             return View();
 
         }
+        
         [HttpGet]
         public IActionResult Form(int id)
         {
             var Jsonresult =_productService.GetAll(x => x.Id == id);
-            return View(Jsonresult);
+            return PartialView(Jsonresult);
         }
 
         public JsonResult Kaydet(Product urun)

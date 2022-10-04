@@ -73,9 +73,10 @@
                 }
             });
         });
-
-        $("#btnDetay").click(function () {
-            let ürünid = $("#id").val();
+        $(document).on("click", ".detay", function (e) {
+            debugger;
+            e.preventDefault();
+            let ürünid = $(this).attr("id");
             $.ajax({
                 contentType: "application/json",
                 dataType: "html",
@@ -83,8 +84,8 @@
                 url: "/Product/Form",
                 data: { id: ürünid },
                 success: function (func) {
-
-                    $("#Details").html(func)
+                    console.log(func)
+                    $("#Details").empty().html(func)
                 }
             });
         });

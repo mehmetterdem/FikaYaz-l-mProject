@@ -13,13 +13,9 @@
     </tr>
     @foreach (var item in Model)
     {
-
-
         <tr>
             <td>@item.Id</td>
-            <td><a href="/Product/Form/@item.Id" id="detay">@item.Name</a></td>
-
-
+            <td><a href="#" id="@item.Id" class="detay">@item.Name</a></td>
         </tr>
     }
 
